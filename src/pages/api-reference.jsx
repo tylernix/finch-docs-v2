@@ -1,4 +1,4 @@
-import { OpenAPI } from "@/components/openapi"
+import { OpenAPI } from "@/components/Openapi"
 import Head from 'next/head'
 
 export default function ApiReference() {
