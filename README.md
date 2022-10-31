@@ -4,7 +4,7 @@ Finch Docs v2 is built using [Tailwind CSS](https://tailwindcss.com) and [Next.j
 
 ## Demo
 
-Live demo -> https://finch-docs-v2.netlify.app/
+Live demo -> <https://finch-docs-v2.netlify.app/>
 
 ![Finch Docs light version](/src/images/finch-docs-example-light.png)
 ![Finch Docs dark version](/src/images/finch-docs-example-dark.png)
@@ -29,6 +29,27 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 ## Customizing
 
 You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+
+Markdoc is a [Markdown-based](https://www.markdownguide.org/getting-started/) document format and a framework for content publishing. Markdoc adds a few extensions to the markdown syntax to enable a powerful way to extend the documentation with custom components. [Tags](https://markdoc.dev/docs/tags) are the main way of adding custom componets to a Markdoc document.
+
+Markdoc comes with a few [built-in tags](https://markdoc.dev/docs/tags#built-in-tags), but Finch has created a few custom-defined tags. You can view them back going to `/markdoc/tags.js`. Once a tag has been defined (even using a custom React component), you can embed the tag in a regular markdown file by enclosing the tag with `{%` and `%}`.
+
+Our custom tags are listed below:
+
+```markdown
+{% callout type="warning" title="Note" %}
+  text
+{% /callout %}
+```
+
+```markdown
+{% tabs %}
+{% tab label="Request" %}
+{% /tab %}
+{% tab label="Response" %}
+{% /tab %}
+{% /tabs %}
+```
 
 ## Learn more
 
