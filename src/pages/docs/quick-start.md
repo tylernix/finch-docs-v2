@@ -28,7 +28,7 @@ Finch Connect provides a secure and elegant authorization flow for your users to
 
 Since this quickstart assumes you have not built an application yet, we must make sure that a proper `redirect_uri` is set up before continuing or our authorization code generation will fail. In your [Finch Dashboard](https://dashboard.tryfinch.com), go to the "Redirect URIs" section and select `+ Add Redirect URI`. We are going to use [https://example.com](https://example.com) for testing purposes. In production, you will want to use your own application's urls for the Redirect Uris (and remove all mentions of [https://example.com](https://example.com) or [http://localhost](http://localhost)).
 
-Redirect URIs are only needed if you are [redirecting to Finch Connect](./Integrating-with-Finch/Integrate-Finch-Connect/Redirect-to-Connect.md). If you decide to use our [embedded Finch Connect flow](./Integrating-with-Finch/Integrate-Finch-Connect/Embed-Connect.md), you do not need to specify a redirect_uri; the SDK does this for you.
+Redirect URIs are only needed if you are [redirecting to Finch Connect](/docs/redirect-finch-connect). If you decide to use our [embedded Finch Connect flow](/docs/embed-finch-connect), you do not need to specify a redirect_uri; the SDK does this for you.
 
 > Currently, embedded flow only works with our [React SDK](https://developer.tryfinch.com/docs/guides/ZG9jOjEzNDk2NDE-react-tutorial). If you would like to request another embedded flow SDK language, [let us know](mailto:developers@tryfinch.com).
 
@@ -46,7 +46,7 @@ Note that we have `sandbox=true`. This is required only when calling our sandbox
 
 ## Log in to the Finch Sandbox account
 
-Click on the Finch Sandbox mock provider on the selector page and log in with the username `largeco` and password `letmein`. For more information on the various types of mock payroll providers you can test, visit our [testing](./Development-Guides/Testing.md) page.
+Click on the Finch Sandbox mock provider on the selector page and log in with the username `largeco` and password `letmein`. For more information on the various types of mock payroll providers you can test, visit our [testing](/docs/testing) page.
 
 > This is the final interaction your end-user will have with Finch. All of the following steps will occur on your application's front-end and back-end.
 
@@ -99,7 +99,7 @@ In [OAuth2](https://oauth.net/2/) terms, the authorization `code` represents a u
 
 ## Use the access token to send an API request
 
-Now that you have a valid `access_token`, you will use this access token to send requests to Finch's APIs from now on. You will not have to go through the authentication process again unless you need to get a new access token or a [re-authentication](./Development-Guides/Re-authentication.md) event happens.
+Now that you have a valid `access_token`, you will use this access token to send requests to Finch's APIs from now on. You will not have to go through the authentication process again unless you need to get a new access token or a [re-authentication](/docs/reauthentication) event happens.
 
 Run the following command to retrieve the `largeco`'s employee directory!
 
@@ -159,4 +159,4 @@ curl https://api.tryfinch.com/employer/directory \
 
 ## Next steps
 
-Congratulations! You have sent your first request to Finch's API. Read on to dive deeper into [Finch Connect](/Integrating-with-Finch/Integrate-Finch-Connect/Redirect-to-Connect.md) or get started with our [production integration checklist](./Integrating-with-Finch/Integration%20Checklist.md).
+Congratulations! You have sent your first request to Finch's API. Read on to dive deeper into [Finch Connect](/docs/redirect-finch-connect) or get started with our [production integration checklist](/docs/moving-to-production).
