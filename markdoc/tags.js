@@ -1,7 +1,7 @@
 import { Callout } from '@/components/Callout'
 import { QuickLink, QuickLinks } from '@/components/QuickLinks'
 import { Tab, Tabs } from '@/components/Tabs'
-import { OpenAPI } from '@/components/openapi'
+import { OpenAPI } from '@/components/Openapi'
 import { Tag } from '@markdoc/markdoc';
 
 const tags = {

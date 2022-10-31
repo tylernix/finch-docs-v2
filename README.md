@@ -51,6 +51,10 @@ Our custom tags are listed below:
 {% /tabs %}
 ```
 
+## OpenAPI
+
+Our developer docs uses Stoplight.io/elements package to display our OpenAPI API Reference documentation. The URL to this OpenAPI specification is located in [https://github.com/Finch-API/finch-docs/tree/main/reference/employer](https://github.com/Finch-API/finch-docs/tree/main/reference/employer). This link needs to be updated in `src/pages/api-reference.jsx` and `src/components/layout.jsx` if this ever changes.
+
 ## Learn more
 
 To learn more about the technologies used in this site template, see the following resources:

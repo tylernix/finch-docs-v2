@@ -10,7 +10,7 @@ import { Navigation } from '@/components/Navigation'
 import { Prose } from '@/components/Prose'
 import { Search } from '@/components/Search'
 import { ThemeSelector } from '@/components/ThemeSelector'
-import { OpenAPI } from "@/components/openapi"
+import { OpenAPI } from "@/components/Openapi"
 
 
 const navigation = [
