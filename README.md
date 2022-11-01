@@ -4,7 +4,7 @@ Finch Docs v2 is built using [Tailwind CSS](https://tailwindcss.com) and [Next.j
 
 ## Demo
 
-Live demo -> <https://finch-docs-v2.netlify.app/>
+Live demo -> <https://finch-docs-v2.vercel.app/>
 
 ![Finch Docs light version](/src/images/finch-docs-example-light.png)
 ![Finch Docs dark version](/src/images/finch-docs-example-dark.png)

@@ -17,19 +17,19 @@ const navigation = [
   {
     title: 'Introduction',
     links: [
+      { title: 'Finch Overview', href: '/docs/finch-overview' },
       { title: 'Getting started', href: '/' },
-      { title: 'How Finch works', href: '/docs/how-finch-works' },
     ],
   },
   {
     title: 'Integration Guides',
     links: [
-      { title: 'Finch Overview', href: '/docs/finch-overview' },
+      { title: 'How Finch works', href: '/docs/how-finch-works' },
       { title: 'Quick Start', href: '/docs/quick-start' },
       {
         title: 'Open Finch Connect From Frontend', children: [
-          { title: 'Redirect to Finch Connect', href: '/docs/redirect-finch-connect' },
           { title: 'Embed Finch Connect', href: '/docs/embed-finch-connect' },
+          { title: 'Redirect to Finch Connect', href: '/docs/redirect-finch-connect' },
         ]
       },
       {

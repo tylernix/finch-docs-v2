@@ -1,14 +1,14 @@
 ---
 title: Redirect to Finch Connect
-description: Quidem magni aut exercitationem maxime rerum eos.
+description: In this method of integrating Finch Connect, your application redirects your user's browser to Finch Connect hosted by Finch on https://connect.tryfinch.com.
 ---
 
-In this method of integrating Finch Connect, your application redirects your user's browser to Connect hosted by Finch on `https://connect.tryfinch.com`. The authorization flow will consist of four steps—
+In this method of integrating Finch Connect, your application redirects your user's browser to Finch Connect hosted by Finch on `https://connect.tryfinch.com`. The authorization flow will consist of four steps:
 
-1. **Open Finch Connect** Your application redirects your user's browser to Finch Connect to initiate the authorization flow.
-2. **Obtain consent** Finch Connect prompts your user to log in to their employment system and grant your application access to the permissions you are requesting for.
-3. **Retrieve the authorization code** If your user successfully connects and grants your application access to their system, Finch Connect will redirect their browser to a specified `redirect_uri` with a short-lived authorization `code`.
-4. **Exchange the code for an access token** Before sending API requests, your application will exchange the short-lived `code` for a long-lived `access_token` that represents your application's access to your user's employment system.
+1. **Open Finch Connect** - Your application redirects your user's browser to Finch Connect to initiate the authorization flow.
+2. **Obtain consent** - Finch Connect prompts your user to log in to their employment system and grant your application access to the permissions you are requesting for.
+3. **Retrieve the authorization code** - If your user successfully connects and grants your application access to their system, Finch Connect will redirect their browser to a specified `redirect_uri` with a short-lived authorization `code`.
+4. **Exchange the code for an access token** - Before sending API requests, your application will exchange the short-lived `code` for a long-lived `access_token` that represents your application's access to your user's employment system.
 
 ---
 
@@ -16,7 +16,7 @@ In this method of integrating Finch Connect, your application redirects your use
 
 When your application needs access to your user's employment system redirect them to Finch Connect.
 
-Construct the Finch Connect redirect with the parameters below—
+Construct the Finch Connect redirect with the parameters below:
 
 {% tabs %}
 {% tab label="Parameters" %}

@@ -1,7 +1,6 @@
 ---
 title: Quick Start
-pageTitle: Finch - The Universal API for Employment Systems.
-description: Securely access your customers’ census, payroll, and benefits data across 150+ HRIS and payroll systems with a single integration.
+description: The quickest way to test Finch's APIs is to send a request to our sandbox environment which will return life-like, but mock data.
 ---
 
 The quickest way to test Finch's APIs is to send a request to our sandbox environment which will return life-like, but mock data.
@@ -37,7 +36,7 @@ We will launch Finch Connect - our secure and elegant authorization flow for you
 ```bash
 https://connect.tryfinch.com/authorize?
 &client_id=<your_client_id>
-&products=company directory
+&products=company directory individual employment payment pay_statement
 &redirect_uri=https://example.com
 &sandbox=true
 ```
