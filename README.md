@@ -28,11 +28,20 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 
 ## Customizing
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+You can start editing documents by modifying the files in the `/src/docs` folder. The site will auto-update locally as you edit these files.
+
+### Creating a new document
+
+1. Create a new .md file in the `src/pages/docs` folder
+1. Update the navigation object in `src/components/Layout.jsx` with a link.
+
+### Markdoc
 
 Markdoc is a [Markdown-based](https://www.markdownguide.org/getting-started/) document format and a framework for content publishing. Markdoc adds a few extensions to the markdown syntax to enable a powerful way to extend the documentation with custom components. [Tags](https://markdoc.dev/docs/tags) are the main way of adding custom componets to a Markdoc document.
 
 Markdoc comes with a few [built-in tags](https://markdoc.dev/docs/tags#built-in-tags), but Finch has created a few custom-defined tags. You can view them back going to `/markdoc/tags.js`. Once a tag has been defined (even using a custom React component), you can embed the tag in a regular markdown file by enclosing the tag with `{%` and `%}`.
+
+### Custom Finch tags
 
 Our custom tags are listed below:
 

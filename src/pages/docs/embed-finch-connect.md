@@ -22,6 +22,8 @@ To make a request to Finch, an employer must connect their payroll or HRIS accou
 
 {% tab label="React SDK" %}
 
+## React SDK
+
 To open Finch Connect using React, you will need to instantiate the [React SDK](https://github.com/Finch-API/react-finch-connect) with the `useFinchConnect` hook and invoke the returned `open` method to display the view for your user.
 
 ### 1. Install the React Finch Connect SDK
@@ -132,6 +134,8 @@ const App = () => {
 
 {% tab label="Javascript SDK" %}
 
+## Javascript SDK
+
 The [Javascript SDK](https://github.com/Finch-API/finch-connect-js) can be loaded via a HTML `<script />` tag and then instantiated with some initialization code in your application.
 
 {% callout type="warning" title="Serve Finch Connect From Server" %}
@@ -217,7 +221,7 @@ To open Finch Connect, use the `open` function returned by `FinchConnect` and ad
 </html>
 ```
 
-### 4. Receive the authorization code
+### 4. Exchange the authorization code
 
 Once a user has authorized the application to access their payroll account, the `onSuccess` function is called with an authorization `code`.
 
@@ -240,7 +244,7 @@ After receiving the authorization `code`, the front-end application must exchang
 
 Notice that your back-end service will not return the `access_token`. This is by design. For security, your front-end should never have access to the `access_token` and **should always be stored in the back-end**.
 
-### 5. Get company information
+### 5. Request company information
 
 Once the back-end has the `access_token`, it can send requests to a payroll provider using the Finch API. Your app will have to send a request to the back-end service which in turn sends a request to Finch. You have to do this because your front-end does not have the `access_token`.
 
@@ -270,4 +274,4 @@ Assuming our back-end has a `/company` endpoint that returns information on the 
 
 ## Next steps
 
-Once you have an `access_token`, you can begin pulling data and pushing changes into your users' employment systems! The next step is to integrate the Finch API into your back-end.
+Once you have an `access_token`, you can begin pulling data and pushing changes into your users' employment systems! The next step is to start handling Finch API responses.

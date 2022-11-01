@@ -55,10 +55,10 @@ export function Hero() {
                 The future of employment is {' '} <span className='inline text-indigo-600 bg-clip-text font-display text-5xl tracking-tight'>programmable</span>.
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-900 dark:text-white">
-                Securely access your customers’ census, payroll, and benefits data across 150+ HRIS and payroll systems with a single integration.
+                Securely access your customers’ census, payroll, and benefits data across 180+ HRIS and payroll systems with a single integration.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/#quick-start">Get started</Button>
+                <Button href="/docs/quickstart">Get started</Button>
                 <Button href="https://dashboard.tryfinch.com/signup" variant="secondary" external={true}>
                   Get API Keys
                 </Button>

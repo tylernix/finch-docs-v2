@@ -15,17 +15,17 @@ import { OpenAPI } from "@/components/Openapi"
 
 const navigation = [
   {
-    title: 'Introduction',
+    title: 'Finch Overview',
     links: [
-      { title: 'Finch Overview', href: '/docs/finch-overview' },
-      { title: 'Getting started', href: '/' },
+      { title: 'Home', href: '/' },
+      { title: 'How Finch works', href: '/docs/how-finch-works' },
+      { title: 'Quickstart', href: '/docs/quickstart' },
     ],
   },
   {
     title: 'Integration Guides',
     links: [
-      { title: 'How Finch works', href: '/docs/how-finch-works' },
-      { title: 'Quick Start', href: '/docs/quick-start' },
+      { title: 'Overview', href: '/docs/integrations-overview' },
       {
         title: 'Open Finch Connect From Frontend', children: [
           { title: 'Embed Finch Connect', href: '/docs/embed-finch-connect' },
@@ -35,9 +35,10 @@ const navigation = [
       {
         title: 'Call Finch APIs From Backend', children: [
           { title: 'Exchange Code For Access Token', href: '/docs/exchange-code-for-access-token' },
+          { title: 'Storing Access Tokens', href: '/docs/storing-access-tokens' },
           { title: 'Handle API Responses', href: '/docs/handle-api-responses' },
-          { title: 'API Reference', href: '/api-reference' },
           { title: 'Using the Benefits API', href: '/docs/benefits-api' },
+          { title: 'API Reference', href: '/api-reference' },
 
         ]
       },

@@ -1,5 +1,5 @@
 ---
-title: Quick Start
+title: Quickstart
 description: The quickest way to test Finch's APIs is to send a request to our sandbox environment which will return life-like, but mock data.
 ---
 
@@ -11,13 +11,11 @@ To get started, sign up for a free account at [https://dashboard.tryfinch.com/si
 
 After registration, you will have access to an application `client_id` and `client_secret` to build and test how Finch works using our sandbox environment — a test environment with life-like data.
 
-{% callout type="warning" title="Note" %}
-  This `client_id` and `client_secret` will only work for our sandbox environment. If you would like to test real providers with live data, you must request developer keys from developers@tryfinch.com.
-{% /callout %}
+> This `client_id` and `client_secret` will only work for our sandbox environment. If you would like to test real providers with live data, you must request developer keys from [developers@tryfinch.com](mailto:developers@tryfinch.com).
 
 ## Open Finch Connect in Sandbox mode
 
-Once you have an application's `client_id` and `client_secret`, you can start interacting with Finch's API using our sandbox mode — a test environment with mock data.
+Once you have an application's `client_id` and `client_secret`, you can start interacting with Finch's API using our sandbox mode — a test environment containing mock data.
 
 Finch Connect provides a secure and elegant authorization flow for your users to grant your application access to their systems.
 
