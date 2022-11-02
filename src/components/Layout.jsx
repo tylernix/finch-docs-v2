@@ -30,6 +30,8 @@ const navigation = [
         title: 'Open Finch Connect From Frontend', children: [
           { title: 'Embed Finch Connect', href: '/docs/embed-finch-connect' },
           { title: 'Redirect to Finch Connect', href: '/docs/redirect-finch-connect' },
+          { title: 'Automated Flow', href: '/docs/automated-flow' },
+          { title: 'Assisted Flow', href: '/docs/assisted-flow' },
         ]
       },
       {

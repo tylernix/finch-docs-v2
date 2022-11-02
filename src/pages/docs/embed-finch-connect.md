@@ -18,10 +18,6 @@ Currently, Finch supports Javascript and React SDKs.
 
 To make a request to Finch, an employer must connect their payroll or HRIS account using Finch Connect. Finch SDKs provides a drop-in and secure authorization flow for your users.
 
-{% tabs %}
-
-{% tab label="React SDK" %}
-
 ## React SDK
 
 To open Finch Connect using React, you will need to instantiate the [React SDK](https://github.com/Finch-API/react-finch-connect) with the `useFinchConnect` hook and invoke the returned `open` method to display the view for your user.
@@ -129,10 +125,6 @@ const App = () => {
   // ...
 };
 ```
-
-{% /tab %}
-
-{% tab label="Javascript SDK" %}
 
 ## Javascript SDK
 
@@ -267,10 +259,6 @@ Assuming our back-end has a `/company` endpoint that returns information on the 
   </body>
 </html>
 ```
-
-{% /tab %}
-
-{% /tabs %}
 
 ## Next steps
 

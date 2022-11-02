@@ -5,6 +5,8 @@ description: The Finch flow begins when your user wants to connect their employm
 
 The Finch flow begins when your customer (a business owner, HR or payroll administrator, etc) wants to connect their employment, payroll, or applicant tracking system to your application. Once your customer connects their system, you can begin to call Finch's APIs to get the data you need.
 
+{% figure src="/images/how-finch-works.png" alt="diagram of how Finch works" / %}
+
 1. **Open Finch Connect** - The first step is to open Finch Connect which is a secure and elegant authorization flow (built on [OAuth 2.0](https://oauth.net/2/)) allowing your customers to grant your application access to their system. Your frontend application launches Finch Connect which initiates this authorization flow.
 1. **Obtain Customer Consent** - Finch Connect displays the permissions your application is requesting access to in their employment or payroll system. If they consent to these permissions, they are next asked to select their provider and prompted to log in to their account using a username and password or an API Key if available.
 1. **Receive An Authorization Code** - Once your customer successfully connects and grants your application access to their system, Finch Connect will provide a short-lived authorization `code`. The authorization `code` represents your customer consenting to allow your application access to their payroll account. It does not grant access to the payroll account itself. The authorzation code expires in 10 minutes.

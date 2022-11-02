@@ -26,7 +26,23 @@ npm run dev
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
-## Customizing
+## Writing docs
+
+### No "users"
+
+When writing documentation, let’s avoid using the term “user” when referring to different types of people. This also applies to our documentation.
+
+Finch’s customer → “Developer”
+
+A Developer’s customer → “Customer” (or sometimes “Employer”)
+
+A Developer’s customer’s customer → “Employer”
+
+Finch’s frontend component that connects an employer’s provider with a developer → “Finch Connect”
+
+An employer’s HRIS, Payroll, or Application Tracking systems → “Provider”
+
+## Customizing docs
 
 You can start editing documents by modifying the files in the `/src/docs` folder. The site will auto-update locally as you edit these files.
 
@@ -59,6 +75,8 @@ Our custom tags are listed below:
 {% /tab %}
 {% /tabs %}
 ```
+
+> We should probably start [validating Markdoc](https://markdoc.dev/docs/validation) tag syntax.
 
 ## OpenAPI
 
