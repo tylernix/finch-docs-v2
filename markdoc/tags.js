@@ -17,6 +17,22 @@ const tags = {
     },
     render: Callout,
   },
+  'color-text': {
+    selfClosing: true,
+    attributes: {
+      text: { type: String },
+      color: {
+        type: String,
+        default: 'darkgreen',
+        matches: ['darkgreen', 'goldenrod']
+      },
+    },
+    render: ({ text, color = 'darkgreen' }) => (
+      <span style={{ color: color }}>
+        {text}
+      </span>
+    ),
+  },
   figure: {
     selfClosing: true,
     attributes: {

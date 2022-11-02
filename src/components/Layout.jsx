@@ -37,7 +37,6 @@ const navigation = [
       {
         title: 'Call Finch APIs From Backend', children: [
           { title: 'Exchange Code For Access Token', href: '/docs/exchange-code-for-access-token' },
-          { title: 'Storing Access Tokens', href: '/docs/storing-access-tokens' },
           { title: 'Handle API Responses', href: '/docs/handle-api-responses' },
           { title: 'Using the Benefits API', href: '/docs/benefits-api' },
           { title: 'API Reference', href: '/api-reference' },
@@ -48,12 +47,12 @@ const navigation = [
         title: 'Testing', children: [
           { title: 'Test with Finch Sandbox', href: '/docs/test-finch-sandbox' },
           { title: 'Test with Real Providers', href: '/docs/test-real-providers' },
-          { title: 'Moving To Production', href: '/docs/moving-to-production' },
-          { title: 'Troubleshooting', href: '/docs/troubleshooting' },
+          // { title: 'Moving To Production', href: '/docs/moving-to-production' },
+          // { title: 'Troubleshooting', href: '/docs/troubleshooting' },
         ]
       },
-      { title: 'Mapping Finch Data To Your System', href: '/docs/finch-data-mapping' },
-      { title: 'Successful Integration Checklist', href: '/docs/successful-integration-checklist' },
+      // { title: 'Mapping Finch Data To Your System', href: '/docs/finch-data-mapping' },
+      { title: 'Successful Integration Checklist', href: '/docs/integration-checklist' },
 
     ],
   },
@@ -62,8 +61,6 @@ const navigation = [
     links: [
       { title: 'Frequently Asked Developer Questions', href: '/docs/frequently-asked-developer-questions' },
       { title: 'List of Providers', href: '/docs/providers' },
-      { title: 'Automated API Connections', href: '/docs/automated-api-connections' },
-      { title: 'Assisted API Connections', href: '/docs/assisted-api-connections' },
       { title: 'Provider Data Compatibility', href: '/docs/provider-compatibility' },
       { title: 'Finch Accountant Creation', href: '/docs/finch-accountant' },
       {
@@ -72,7 +69,7 @@ const navigation = [
           { title: 'Rate Limits', href: '/docs/rate-limits' },
           { title: 'HTTP Headers', href: '/docs/http-headers' },
           { title: 'Redirect URIs', href: '/docs/redirect-uris' },
-          { title: 'Handling Errors', href: '/docs/handling-errors' },
+          { title: 'Error Handling', href: '/docs/error-handling' },
           { title: 'Data Sync Schedule', href: '/docs/data-sync-schedule' },
           { title: 'Application Security', href: '/docs/application-security' },
           { title: 'Access Tokens', href: '/docs/access-tokens' },
@@ -80,10 +77,13 @@ const navigation = [
       },
       {
         title: 'Finch Best Practices', children: [
-          { title: 'Reauthentication Flow', href: '/docs/reauthentication-flow' },
-          { title: 'Managing Multiple Connections', href: '/docs/managing multiple connections' },
-          { title: 'Reconciling Employees', href: '/docs/reconciling employees' },
+          { title: 'Re-authentication Flow', href: '/docs/re-authentication-flow' },
+          { title: 'Managing Multiple Connections', href: '/docs/managing-multiple-connections' },
+          { title: 'Storing Access Tokens', href: '/docs/storing-access-tokens' },
+          { title: 'Disconnecting Access Tokens', href: '/docs/disconnecting-access-tokens' },
+          { title: 'Reconciling Employees', href: '/docs/reconciling-employees' },
           { title: 'Batching Requests', href: '/docs/batching-requests' },
+
         ]
       },
     ],

@@ -24,7 +24,7 @@ Next, run the development server:
 npm run dev
 ```
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the developer documentation.
 
 ## Writing docs
 
@@ -41,6 +41,17 @@ A Developer’s customer’s customer → “Employer”
 Finch’s frontend component that connects an employer’s provider with a developer → “Finch Connect”
 
 An employer’s HRIS, Payroll, or Application Tracking systems → “Provider”
+
+### No "ACNYMS"
+
+Avoid using acronyms in documentation. The time they "save" does not justify the exclusion someone feels when they don't understand an acronym.
+
+### Random
+
+Avoid using sentences that use "refer to [here](link)" in documentation.
+
+- Bad: "Your customer needs to go through Finch Connect again to reconnect their employment system if their initial connection has gone stale. You can read more [here](link)."
+- Good: "Your customer needs to go through Finch Connect again to [reconnect their provider](link) if their initial connection has gone stale."
 
 ## Customizing docs
 
@@ -60,6 +71,10 @@ Markdoc comes with a few [built-in tags](https://markdoc.dev/docs/tags#built-in-
 ### Custom Finch tags
 
 Our custom tags are listed below:
+
+```markdown
+{% figure src="/images/image.png" alt="description of image" / %}
+```
 
 ```markdown
 {% callout type="warning" title="Note" %}
