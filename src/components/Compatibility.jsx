@@ -1,4 +1,6 @@
 import { useEffect, useState, Fragment } from "react"
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Combobox } from '@headlessui/react'
 
 const PROVIDERS = [
     {
@@ -47,6 +49,10 @@ const PROVIDERS = [
     }
 ]
 
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
 
 export function Compatibility() {
     const [providerList, setProviderList] = useState(PROVIDERS);
@@ -72,68 +78,17 @@ export function Compatibility() {
 
     ]);
     const [activeFilter, setActiveFilter] = useState([]);
+    const [query, setQuery] = useState('')
 
-    const [searchList, setSearchList] = useState([
-        {
-            id: 1,
-            type: "PART_TIME",
-            name: "Akash",
-            location: "bangalore",
-            experience: 1
-        },
-        {
-            id: 2,
-            type: "PART_TIME",
-            name: "feroz",
-            location: "mumbai",
-            experience: 3
-        },
-        {
-            id: 3,
-            type: "FULL_TIME",
-            name: "Farheen",
-            location: "agra",
-            experience: 5
-        },
-        {
-            id: 4,
-            type: "FREELANCER",
-            name: "Raju",
-            location: "chennai",
-            experience: 6
-        },
-        {
-            id: 5,
-            type: "FULL_TIME",
-            name: "Asif",
-            location: "vegas",
-            experience: 7
-        }
-    ])
-    const [filterList, setFilterList] = useState([
-        {
-            id: 11,
-            name: "Part Time",
-            value: "PART_TIME"
-        },
-        {
-            id: 12,
-            name: "Full Time",
-            value: "FULL_TIME"
-        },
-        {
-            id: 13,
-            name: "Freelancer",
-            value: "FREELANCER"
-        }
-    ]);
-    //const [activeFilter, setActiveFilter] = useState([]);
-    //const [field_company_locations, set_field_company_locations] = useState(true);
-    //const [field_directory_individuals_manager, set_directory_individuals_manager] = useState(false);
 
-    // function isCompatible(provider) {
-    //     return field_company_locations && provider.company.locations == true
-    // }
+    const [selectedField, setSelectedField] = useState(null)
+
+    const filteredFields =
+        query === ''
+            ? dataFieldFilters
+            : dataFieldFilters.filter((field) => {
+                return field.name.toLowerCase().includes(query.toLowerCase())
+            })
 
     function onFilterChange(filter) {
         if (filter === "ALL") {
@@ -165,6 +120,60 @@ export function Compatibility() {
             item[activeFilter] == true
         );
     }
+
+    return (
+        
+    )
+
+    return (
+        <Combobox as="div" value={selectedField} onChange={setSelectedField} multiple>
+            <Combobox.Label className="block text-sm font-medium text-gray-700">Provider data fields</Combobox.Label>
+            <div className="relative mt-1">
+                <Combobox.Input
+                    className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                    onChange={(event) => setQuery(event.target.value)}
+                    displayValue={(field) => field?.name}
+                />
+                <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                    <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </Combobox.Button>
+
+                {filteredFields.length > 0 && (
+                    <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        {filteredFields.map((field) => (
+                            <Combobox.Option
+                                key={field.id}
+                                value={field}
+                                className={({ active }) =>
+                                    classNames(
+                                        'relative cursor-default select-none py-2 pl-3 pr-9',
+                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900'
+                                    )
+                                }
+                            >
+                                {({ active, selected }) => (
+                                    <>
+                                        <span className={classNames('block truncate', selected && 'font-semibold')}>{field.name}</span>
+
+                                        {selected && (
+                                            <span
+                                                className={classNames(
+                                                    'absolute inset-y-0 right-0 flex items-center pr-4',
+                                                    active ? 'text-white' : 'text-indigo-600'
+                                                )}
+                                            >
+                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                            </span>
+                                        )}
+                                    </>
+                                )}
+                            </Combobox.Option>
+                        ))}
+                    </Combobox.Options>
+                )}
+            </div>
+        </Combobox>
+    )
 
     return (
         <div className="searchContainer">

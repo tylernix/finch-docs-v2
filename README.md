@@ -91,6 +91,8 @@ Our custom tags are listed below:
 {% /tabs %}
 ```
 
+Since this website uses the [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin) plugin for styling markdown articles, if a custom tag (like `src/components/Provider-Compatibility.jsx`) is embedded into an article, but has custom styling, add the [not-prose](https://tailwindcss.com/docs/typography-plugin#undoing-typography-styles) css style to undue typography styles.
+
 > We should probably start [validating Markdoc](https://markdoc.dev/docs/validation) tag syntax.
 
 ## OpenAPI

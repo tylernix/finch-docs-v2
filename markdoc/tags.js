@@ -3,6 +3,7 @@ import { QuickLink, QuickLinks } from '@/components/QuickLinks'
 import { Tab, Tabs } from '@/components/Tabs'
 import { OpenAPI } from '@/components/Openapi'
 import { Tag } from '@markdoc/markdoc';
+import { Compatibility } from '@/components/Provider-Compatibility';
 
 const tags = {
   openapi: {
@@ -17,6 +18,10 @@ const tags = {
     },
     render: Callout,
   },
+  compatibility: {
+    selfClosing: true,
+    render: Compatibility,
+  },
   'color-text': {
     selfClosing: true,
     attributes: {
@@ -24,7 +29,7 @@ const tags = {
       color: {
         type: String,
         default: 'darkgreen',
-        matches: ['darkgreen', 'goldenrod']
+        matches: ['darkgreen', 'green', 'goldenrod', 'red']
       },
     },
     render: ({ text, color = 'darkgreen' }) => (

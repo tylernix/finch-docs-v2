@@ -17,7 +17,11 @@ export function Prose({ as: Component = 'div', className, ...props }) {
         // pre
         'prose-pre:rounded-xl prose-pre:bg-slate-900 prose-pre:shadow-lg dark:prose-pre:bg-slate-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-slate-300/10',
         // hr
-        'dark:prose-hr:border-slate-800'
+        'dark:prose-hr:border-slate-800',
+        // code
+        'prose-code:text-indigo-600 prose-code:before:content-none prose-code:after:content-none',
+        // table
+        'prose-table:table-auto prose-table:overflow-x-auto'
       )}
       {...props}
     />
