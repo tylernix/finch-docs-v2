@@ -145,8 +145,8 @@ const DATA_FIELDS = [
     },
 
 ]
-const PROVIDER_COMPATIBILITY = {
-    "bamboohr": {
+const PROVIDER_COMPATIBILITY = [
+    {
         provider_id: 'bamboohr',
         display_name: "Bamboo HR",
         logo: "https://finch-logos.s3.us-west-2.amazonaws.com/bambooHrLogo.svg",
@@ -217,7 +217,7 @@ const PROVIDER_COMPATIBILITY = {
         }
 
     },
-    "gusto": {
+    {
         provider_id: 'gusto',
         display_name: "Gusto",
         logo: "https://finch-logos.s3.us-west-2.amazonaws.com/gustoLogo.svg",
@@ -288,7 +288,7 @@ const PROVIDER_COMPATIBILITY = {
         }
 
     },
-    "justworks": {
+    {
         provider_id: 'justworks',
         display_name: "Justworks",
         logo: "https://finch-logos.s3.us-west-2.amazonaws.com/justworksLogo.svg",
@@ -359,7 +359,7 @@ const PROVIDER_COMPATIBILITY = {
         }
 
     },
-    "workday": {
+    {
         provider_id: 'workday',
         display_name: "Workday",
         logo: "https://finch-logos.s3.us-west-2.amazonaws.com/workdayLogo.svg",
@@ -395,7 +395,7 @@ const PROVIDER_COMPATIBILITY = {
         }
 
     },
-    "paychex_flex": {
+    {
         provider_id: 'paychex_flex',
         display_name: "Paychex Flex",
         logo: "https://finch-logos.s3.us-west-2.amazonaws.com/paychexFlexLogo.svg",
@@ -466,7 +466,7 @@ const PROVIDER_COMPATIBILITY = {
         }
 
     }
-}
+]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -502,18 +502,37 @@ export function Compatibility() {
                     return field.name.toLowerCase().includes(query.toLowerCase()) && productFilter[field.product]
             })
 
+    const providers =
+        activeFilter == []
+            ? PROVIDER_COMPATIBILITY
+            : PROVIDER_COMPATIBILITY.filter(provider => {
+                // check if the provider's field compatibility corresponds with the activeFilter fields
+                return Object.values(activeFilter).every((f) => {
 
-    // let filteredList;
-    // if (
-    //     activeFilter.length === 0 ||
-    //     activeFilter.length === dataFieldFilters.length
-    // ) {
-    //     filteredList = providerList;
-    // } else {
-    //     filteredList = providerList.filter(item =>
-    //         item[activeFilter] == true
-    //     );
-    // }
+                    if (provider.compatibility[f.product]) {
+                        const nestedFields = f.name.split('.')
+
+                        //if the first field contains array brackets ex: accounts[], remove the brackets
+                        if (/\[\]/.test(nestedFields[0])) {
+                            nestedFields[0] = nestedFields[0].slice(0, -2)
+                        }
+
+                        var field = provider.compatibility[f.product]
+
+                        // for each nested field, dynamically build the variable name to traverse the nested provider compatibility fields
+                        nestedFields.forEach(nf => {
+                            //console.log(field)
+                            //console.log(nf)
+                            //console.log(field[nf])
+                            field = field[nf]
+                        })
+
+                        return field
+                    } else {
+                        return false
+                    }
+                })
+            })
 
     return (
         <>
@@ -757,33 +776,54 @@ export function Compatibility() {
                     </Transition>
                 </Menu>
 
-                {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {filteredList.map(item => (
+                <button
+                    type="button"
+                    className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-medium leading-4 text-white hover:bg-indigo-700 ring-1 ring-slate-200 hover:ring-slate-300 hover:bg-gray-50 focus:outline-none focus:border-none focus:ring-1 focus:ring-slate-300 dark:focus:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500 dark:bg-indigo-600/75 dark:hover:bg-indigo-700/75 dark:text-slate-300"
+                    onClick={(event) => {
+                        setActiveFilter([])
+                        setProductFilter({
+                            company: false,
+                            directory: false,
+                            individual: false,
+                            employment: false,
+                            payment: false,
+                            pay_statement: false
+                        })
+                    }}
+                >
+                    Clear All
+                </button>
 
-                        <div key={item.id} className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                            <div className="flex-shrink-0">
-                                <img className="h-20 w-20 rounded-full" src={item.logo_src} alt="" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                                <a href="#" className="focus:outline-none">
-                                    <span className="absolute inset-0" aria-hidden="true"></span>
-                                    <p className="text-sm font-medium text-gray-900">{item.display_name}</p>
-                                    <p className="text-sm text-gray-500 truncate !mt-0">Automated</p>
-                                </a>
-                            </div>
-                        </div>
 
-                    ))}
-                </div> */}
             </div>
-            {/* <pre>
-                Valid Providers <br></br>
-                {JSON.stringify(filteredList, null, 2)}
-            </pre> */}
+            {/* PROVIDER LIST */}
+            <div className="not-prose grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-3 pt-4">
+                {providers.map(provider => (
+
+                    <div key={provider.provider_id} className="relative rounded-lg border-none bg-white px-1 py-1 shadow-sm flex flex-col items-center space-x-3 ring-1 ring-slate-200 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40">
+                        <div className="flex-shrink-0">
+                            <img className="h-16 w-20 rounded-full" src={provider.logo} alt="" />
+                        </div>
+                        <div className="flex-1 min-w-0 self-start">
+                            <a href={`/docs/${provider.provider_id}`} className="focus:outline-none">
+                                <span className="absolute inset-0" aria-hidden="true"></span>
+                                <p className="text-sm font-medium text-gray-900 dark:text-slate-300">{provider.display_name}</p>
+                                <p className="text-sm text-gray-500 truncate !mt-0">Automated API</p>
+                            </a>
+                        </div>
+                    </div>
+
+                ))}
+            </div>
             <pre>
                 Active Filter <br></br>
                 {JSON.stringify(activeFilter, null, 2)}
             </pre>
+            <pre>
+                Valid Providers <br></br>
+                {JSON.stringify(providers.map(p => p.display_name), null, 2)}
+            </pre>
+
             <pre>
                 Query Fields <br></br>
                 {JSON.stringify(queryFields, null, 2)}
