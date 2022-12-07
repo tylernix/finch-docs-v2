@@ -1,472 +1,9 @@
 import { useEffect, useState, Fragment } from "react"
 import { CheckIcon, ChevronUpDownIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Combobox, Menu, Transition } from '@headlessui/react'
+import { DATA_FIELDS, PROVIDER_COMPATIBILITY } from 'util/constants'
 
-const DATA_FIELDS = [
-    {
-        name: "legal_name",
-        description: "The legal name of the company.",
-        product: "company",
-    },
-    {
-        name: "entity",
-        description: "The entity type object.",
-        product: "company",
-    },
-    {
-        name: "entity.type",
-        description: "The tax payer type of the company.",
-        allowed_value: [
-            "llc",
-            "corporation",
-            "sole_proprietor",
-            "non_profit",
-            "partnership",
-            "cooperative",
-            "null"
-        ],
-        product: "company",
-    },
-    {
-        name: "entity.subtype",
-        description: "The tax payer subtype of the company.",
-        allowed_value: [
-            "s_corporation",
-            "c_corporation",
-            "b_corporation",
-            "null"
-        ],
-        product: "company",
-    },
-    {
-        name: "primary_email",
-        description: "The email of the main administrator on the account.",
-        product: "company",
-    },
-    {
-        name: "primary_phone_number",
-        description: "The phone number of the main administrator on the account. Format: XXXXXXXXXX",
-        product: "company",
-    },
-    {
-        name: "departments",
-        description: "An array of company departments.",
-        product: "company",
-    },
-    {
-        name: "departments[].name",
-        description: "The department name.",
-        product: "company",
-    },
-    {
-        name: "departments[].parent",
-        description: "The parent department, if present.",
-        product: "company",
-    },
-    {
-        name: "departments[].parent.name",
-        description: "The parent department's name.",
-        product: "company",
-    },
-    {
-        name: "ein",
-        description: "The employer identification number.",
-        product: "company",
-    },
-    {
-        name: "locations",
-        description: "The array of company locations.",
-        product: "company",
-    },
-    {
-        name: "locations[].line1",
-        description: "Street address or PO box.",
-        product: "company",
-    },
-    {
-        name: "locations[].line2",
-        description: "Apartment, suite, unit, or building.",
-        product: "company",
-    },
-    {
-        name: "locations[].city",
-        description: "City, district, suburb, town, or village.",
-        product: "company",
-    },
-    {
-        name: "locations[].state",
-        description: "The state code.",
-        product: "company",
-    },
-    {
-        name: "locations[].postal_code",
-        description: "The postal code or zip code.",
-        product: "company",
-    },
-    {
-        name: "locations[].country",
-        description: "The 2-letter ISO 3166 country code.",
-        product: "company",
-    },
-    {
-        name: "accounts",
-        description: "An array of bank account objects associated with the payroll or HRIS system.",
-        product: "company",
-    },
-    {
-        name: "accounts[].routing_number",
-        description: "A nine-digit code that's based on the U.S. Bank location where your account was opened.",
-        product: "company",
-    },
-    {
-        name: "accounts[].account_name",
-        description: "The name of the bank associated in the payroll or HRIS system.",
-        product: "company",
-    },
-    {
-        name: "accounts[].institution_name",
-        description: "The name of the banking institution.",
-        product: "company",
-    },
-    {
-        name: "accounts[].account_type",
-        description: "The type of bank account.",
-        allowed_value: [
-            "checking",
-            "savings",
-            "null"
-        ],
-        product: "company",
-    },
-    {
-        name: "accounts[].account_number",
-        description: "A 10-12 digit number to specify the bank account.",
-        product: "company",
-    },
 
-]
-const PROVIDER_COMPATIBILITY = [
-    {
-        provider_id: 'bamboohr',
-        display_name: "Bamboo HR",
-        logo: "https://finch-logos.s3.us-west-2.amazonaws.com/bambooHrLogo.svg",
-        icon: null,
-        products: [
-            "company",
-            "directory",
-            "individual",
-            "employment"
-        ],
-        mfa_required: null,
-        primary_color: null,
-        compatibility: {
-            company: {
-                id: true,
-                legal_name: true,
-                entity: {
-                    type: true,
-                    subtype: true
-                },
-                primary_email: true,
-                primary_phone_number: true,
-                ein: true,
-                department: true,
-                departments: {
-                    name: true,
-                    parent: {
-                        name: true
-                    }
-                },
-                location: true,
-                locations: {
-                    line1: true,
-                    line2: true,
-                    city: true,
-                    state: true,
-                    postal_code: true,
-                    country: true
-                },
-                account: true,
-                accounts: {
-                    routing_number: true,
-                    account_name: true,
-                    institution_name: true,
-                    account_type: true,
-                    account_number: true
-                }
-            },
-            directory: {
-                paging: {
-                    count: true,
-                    offset: true
-                },
-                individuals: {
-                    id: true,
-                    first_name: true,
-                    middle_name: true,
-                    last_name: true,
-                    manager: {
-                        id: true
-                    },
-                    department: {
-                        name: true
-                    },
-                    is_active: true
-                }
-            }
-        }
-
-    },
-    {
-        provider_id: 'gusto',
-        display_name: "Gusto",
-        logo: "https://finch-logos.s3.us-west-2.amazonaws.com/gustoLogo.svg",
-        icon: null,
-        products: [
-            "company",
-            "directory",
-            "individual",
-            "employment"
-        ],
-        mfa_required: null,
-        primary_color: null,
-        compatibility: {
-            company: {
-                id: true,
-                legal_name: true,
-                entity: {
-                    type: true,
-                    subtype: true
-                },
-                primary_email: true,
-                primary_phone_number: true,
-                ein: true,
-                department: true,
-                departments: {
-                    name: true,
-                    parent: {
-                        name: true
-                    }
-                },
-                location: true,
-                locations: {
-                    line1: true,
-                    line2: true,
-                    city: true,
-                    state: true,
-                    postal_code: true,
-                    country: true
-                },
-                account: true,
-                accounts: {
-                    routing_number: true,
-                    account_name: false,
-                    institution_name: true,
-                    account_type: true,
-                    account_number: true
-                }
-            },
-            directory: {
-                paging: {
-                    count: true,
-                    offset: true
-                },
-                individuals: {
-                    id: true,
-                    first_name: true,
-                    middle_name: true,
-                    last_name: true,
-                    manager: {
-                        id: true
-                    },
-                    department: {
-                        name: true
-                    },
-                    is_active: true
-                }
-            }
-        }
-
-    },
-    {
-        provider_id: 'justworks',
-        display_name: "Justworks",
-        logo: "https://finch-logos.s3.us-west-2.amazonaws.com/justworksLogo.svg",
-        icon: null,
-        products: [
-            "company",
-            "directory",
-            "individual",
-            "employment"
-        ],
-        mfa_required: null,
-        primary_color: null,
-        compatibility: {
-            company: {
-                id: true,
-                legal_name: true,
-                entity: {
-                    type: true,
-                    subtype: true
-                },
-                primary_email: false,
-                primary_phone_number: true,
-                ein: true,
-                department: true,
-                departments: {
-                    name: true,
-                    parent: {
-                        name: true
-                    }
-                },
-                location: true,
-                locations: {
-                    line1: true,
-                    line2: true,
-                    city: true,
-                    state: true,
-                    postal_code: true,
-                    country: true
-                },
-                account: true,
-                accounts: {
-                    routing_number: true,
-                    account_name: false,
-                    institution_name: true,
-                    account_type: true,
-                    account_number: true
-                }
-            },
-            directory: {
-                paging: {
-                    count: true,
-                    offset: true
-                },
-                individuals: {
-                    id: true,
-                    first_name: true,
-                    middle_name: true,
-                    last_name: true,
-                    manager: {
-                        id: true
-                    },
-                    department: {
-                        name: true
-                    },
-                    is_active: true
-                }
-            }
-        }
-
-    },
-    {
-        provider_id: 'workday',
-        display_name: "Workday",
-        logo: "https://finch-logos.s3.us-west-2.amazonaws.com/workdayLogo.svg",
-        icon: null,
-        products: [
-            "directory",
-            "individual",
-            "employment"
-        ],
-        mfa_required: null,
-        primary_color: null,
-        compatibility: {
-            company: null,
-            directory: {
-                paging: {
-                    count: true,
-                    offset: true
-                },
-                individuals: {
-                    id: true,
-                    first_name: true,
-                    middle_name: true,
-                    last_name: true,
-                    manager: {
-                        id: false
-                    },
-                    department: {
-                        name: true
-                    },
-                    is_active: true
-                }
-            }
-        }
-
-    },
-    {
-        provider_id: 'paychex_flex',
-        display_name: "Paychex Flex",
-        logo: "https://finch-logos.s3.us-west-2.amazonaws.com/paychexFlexLogo.svg",
-        icon: null,
-        products: [
-            "company",
-            "directory",
-            "individual",
-            "employment"
-        ],
-        mfa_required: null,
-        primary_color: null,
-        compatibility: {
-            company: {
-                id: true,
-                legal_name: true,
-                entity: {
-                    type: true,
-                    subtype: true
-                },
-                primary_email: true,
-                primary_phone_number: false,
-                ein: true,
-                department: true,
-                departments: {
-                    name: true,
-                    parent: {
-                        name: true
-                    }
-                },
-                location: true,
-                locations: {
-                    line1: true,
-                    line2: true,
-                    city: true,
-                    state: true,
-                    postal_code: true,
-                    country: true
-                },
-                account: true,
-                accounts: {
-                    routing_number: true,
-                    account_name: false,
-                    institution_name: true,
-                    account_type: false,
-                    account_number: true
-                }
-            },
-            directory: {
-                paging: {
-                    count: true,
-                    offset: true
-                },
-                individuals: {
-                    id: true,
-                    first_name: true,
-                    middle_name: true,
-                    last_name: true,
-                    manager: {
-                        id: false
-                    },
-                    department: {
-                        name: true
-                    },
-                    is_active: true
-                }
-            }
-        }
-
-    }
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -474,10 +11,10 @@ function classNames(...classes) {
 
 export function Compatibility() {
     const [query, setQuery] = useState('')
-    const [providerMenu, setProviderMenu] = useState(false)
+    //const [providerMenu, setProviderMenu] = useState(false)
 
-    const [providerList, setProviderList] = useState(PROVIDER_COMPATIBILITY);
-    const [dataFieldFilters, setDataFieldFilters] = useState(DATA_FIELDS);
+    //const [providerList, setProviderList] = useState(PROVIDER_COMPATIBILITY);
+    //const [dataFieldFilters, setDataFieldFilters] = useState(DATA_FIELDS);
     const [activeFilter, setActiveFilter] = useState([]);
     const [productFilter, setProductFilter] = useState({
         company: false,
@@ -508,7 +45,7 @@ export function Compatibility() {
             : PROVIDER_COMPATIBILITY.filter(provider => {
                 // check if the provider's field compatibility corresponds with the activeFilter fields
                 return Object.values(activeFilter).every((f) => {
-
+                    console.log(provider.display_name)
                     if (provider.compatibility[f.product]) {
                         const nestedFields = f.name.split('.')
 
@@ -568,12 +105,15 @@ export function Compatibility() {
                                         {({ active, selected }) => (
                                             <>
                                                 <div className="flex flex-col">
-                                                    <span className={classNames('', selected && 'font-semibold')}>
-                                                        {field.name}
+                                                    <span className={classNames('', active ? 'text-indigo-200' : 'text-indigo-600')}>
+                                                        {field.product}
                                                     </span>
-                                                    <span className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'mt-0.5')}>
-                                                        {field.description}
-                                                    </span>
+                                                    <div>
+                                                        <span className={classNames('', selected && 'font-bold')}>{field.name} {' '}</span>
+                                                        <span className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'mt-0.5')}>
+                                                            - {field.description}
+                                                        </span>
+                                                    </div>
                                                 </div>
 
                                                 {selected && (
@@ -800,12 +340,12 @@ export function Compatibility() {
             <div className="not-prose grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-3 pt-4">
                 {providers.map(provider => (
 
-                    <div key={provider.provider_id} className="relative rounded-lg border-none bg-white px-1 py-1 shadow-sm flex flex-col items-center space-x-3 ring-1 ring-slate-200 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40">
+                    <div key={provider.id} className="relative rounded-lg border-none bg-white px-1 py-1 shadow-sm flex flex-col items-center space-x-3 ring-1 ring-slate-200 hover:ring-indigo-500 hover:ring-2 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-indigo-500/70">
                         <div className="flex-shrink-0">
-                            <img className="h-16 w-20 rounded-full" src={provider.logo} alt="" />
+                            <img className="h-full max-h-16 w-full max-w-16 py-4 px-10" src={provider.logo} alt={provider.display_name + " logo"} />
                         </div>
                         <div className="flex-1 min-w-0 self-start">
-                            <a href={`/docs/${provider.provider_id}`} className="focus:outline-none">
+                            <a href={`/docs/${provider.id}`} className="focus:outline-none">
                                 <span className="absolute inset-0" aria-hidden="true"></span>
                                 <p className="text-sm font-medium text-gray-900 dark:text-slate-300">{provider.display_name}</p>
                                 <p className="text-sm text-gray-500 truncate !mt-0">Automated API</p>

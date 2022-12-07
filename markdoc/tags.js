@@ -4,6 +4,7 @@ import { Tab, Tabs } from '@/components/Tabs'
 import { OpenAPI } from '@/components/Openapi'
 import { Tag } from '@markdoc/markdoc';
 import { Compatibility } from '@/components/Provider-Compatibility';
+import { SupportedFieldsTable } from '@/components/Supported-Fields-Table';
 
 const tags = {
   openapi: {
@@ -21,6 +22,16 @@ const tags = {
   compatibility: {
     selfClosing: true,
     render: Compatibility,
+  },
+  'supported-fields-table': {
+    selfClosing: true,
+    attributes: {
+      product: {
+        type: String,
+        matches: ['company', 'directory', 'individual', 'employment', 'payment', 'pay-statement']
+      }
+    },
+    render: SupportedFieldsTable,
   },
   'color-text': {
     selfClosing: true,
